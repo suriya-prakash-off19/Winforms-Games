@@ -254,6 +254,8 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "PageForm";
             Load += PageForm_Load;
+            KeyDown += PageForm_KeyDown;
+            MouseClick += PageForm_MouseClick;
             MouseDown += PageForm_MouseDown;
             ((System.ComponentModel.ISupportInitialize)Green1).EndInit();
             ((System.ComponentModel.ISupportInitialize)Red1).EndInit();
