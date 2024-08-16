@@ -290,7 +290,7 @@ namespace Ludo
 
         private void MoveToPosition(PictureBox pictureBox)
         {
-            int x = pictureBox.Location.X;
+            int x = pictureBox.Location.X; 
             int y = pictureBox.Location.Y;
             var point = Direction["Right"];
             if(x>=385 &&  x<= 385 &&  y>=455 &&  y<=465)

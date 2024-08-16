@@ -123,7 +123,7 @@ namespace Ripple
             if(ripple)
             {
                 list.Add(new Rectangle(x - width / 2, y - height / 2, width, height));
-                Alpha.Add(80);
+                Alpha.Add(190);
             }
             
             Invalidate();
