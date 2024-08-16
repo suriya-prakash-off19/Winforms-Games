@@ -17,6 +17,7 @@ namespace Ludo
         Dictionary<PictureBox, Point> PointGreen;
         Dictionary<PictureBox, Point> PointBlue;
         Dictionary<PictureBox, Point> PointYellow;
+        List<int> ints;
         List<string> MoveName;
         int MoveNumber;
         int x = 0;
@@ -27,6 +28,7 @@ namespace Ludo
         {
             InitializeComponent();
             Moved = true;
+            ints = new List<int>() { 1, 2, 3, 4, 5, 6, 6, 5, 4, 3, 2, 1, 1, 3, 5, 6, 4, 2, 1, 4, 6, 5, 3, 2 };
             Direction = new Dictionary<string, Point>();
             SetDirectionMove(Direction);
             FirstMove = new bool[] { false, false, false, false };
@@ -125,7 +127,7 @@ namespace Ludo
         private void RollDice()
         {
             Random random = new Random();
-            x = random.Next(1, 7);
+            x = ints[random.Next(0,ints.Count)];
             pictureBox.Image?.Dispose();
             pictureBox.Image = null;
             pictureBox.Size = new Size(30, 30);

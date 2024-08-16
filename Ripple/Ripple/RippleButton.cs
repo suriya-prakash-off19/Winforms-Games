@@ -120,8 +120,12 @@ namespace Ripple
             height = 10; width = 10;
             x = mevent.X;
             y = mevent.Y;
-            list.Add(new Rectangle(x - width / 2, y - height / 2, width, height));
-            Alpha.Add(80);
+            if(ripple)
+            {
+                list.Add(new Rectangle(x - width / 2, y - height / 2, width, height));
+                Alpha.Add(80);
+            }
+            
             Invalidate();
         }
         protected override void OnMouseHover(EventArgs e)
