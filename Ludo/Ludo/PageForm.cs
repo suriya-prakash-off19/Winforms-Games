@@ -293,7 +293,7 @@ namespace Ludo
             int x = pictureBox.Location.X; 
             int y = pictureBox.Location.Y;
             var point = Direction["Right"];
-            if(x>=385 &&  x<= 385 &&  y>=455 &&  y<=465)
+            if(x>=385 &&  x<= 410 &&  y>=455 &&  y<=465)
             {
                 point = Direction["UpLeft"];
             }
@@ -337,12 +337,12 @@ namespace Ludo
 
         private bool Up(int x, int y)
         {
-            return (((x >= 385 && x <= 395 && y >= 460 && y <= 700) || (x >= 385 && x <= 395 && y >= 30 && y <= 270) || (x >= 25 && x <= 35 && y >= 310 && y <= 400)));
+            return (((x >= 385 && x <= 395 && y >= 460 && y <= 700) || (x >= 385 && x <= 395 && y >= 30 && y <= 270) || (x >= 25 && x <= 35 && y >= 325 && y <= 420)));
         }
 
         private bool left(int x, int y)
         {
-            return (((x >= 30 && x <= 300 && y >= 405 && y <= 415) || (x >= 565 && x <= 880 && y >= 405 && y <= 415) || (x >= 395 && x <= 520 && y >= 695 && y <= 705)));
+            return (((x >= 40 && x <= 340 && y >= 405 && y <= 415) || (x >= 565 && x <= 880 && y >= 405 && y <= 415) || (x >= 395 && x <= 520 && y >= 695 && y <= 705)));
             
         }
 
