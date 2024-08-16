@@ -44,14 +44,14 @@ namespace Ludo
 
         private void SetDirectionMove(Dictionary<string, Point> direction)
         {
-            direction.Add("Up", new Point(-60, 0));
-            direction.Add("Down",new Point(60, 0));
-            direction.Add("Left", new Point(0, -48));
-            direction.Add("Right",new Point(0, 48));
-            direction.Add("UpLeft", new Point(-60, -48));
+            direction.Add("Up", new Point(0, 48));
+            direction.Add("Down", new Point(0, -48));
+            direction.Add("Left", new Point(60, 0));
+            direction.Add("Right", new Point(-60, 0));
+            direction.Add("UpLeft", new Point(60, 48));
             direction.Add("UpRight", new Point(-60, 48));
             direction.Add("DownLeft", new Point(60, -48));
-            direction.Add("DownRight", new Point(60, 48));
+            direction.Add("DownRight", new Point(-60, -48));
         }
 
         private void DrawIcon(object s)
@@ -128,6 +128,7 @@ namespace Ludo
         {
             Random random = new Random();
             x = ints[random.Next(0,ints.Count)];
+            
             pictureBox.Image?.Dispose();
             pictureBox.Image = null;
             pictureBox.Size = new Size(30, 30);
@@ -273,22 +274,7 @@ namespace Ludo
             if (!Moved)
                 for (int i = 0; i < x; i++)
                 {
-                    if (pictureBox.Name.StartsWith("R"))
-                    {
-                        pictureBox.Location = new Point(pictureBox.Location.X, pictureBox.Location.Y - 48);
-                    }
-                    else if (pictureBox.Name.StartsWith("G"))
-                    {
-                        pictureBox.Location = new Point(pictureBox.Location.X + 60, pictureBox.Location.Y);
-                    }
-                    else if (pictureBox.Name.StartsWith("B"))
-                    {
-                        pictureBox.Location = new Point(pictureBox.Location.X - 60, pictureBox.Location.Y);
-                    }
-                    else if (pictureBox.Name.StartsWith("Y"))
-                    {
-                        pictureBox.Location = new Point(pictureBox.Location.X, pictureBox.Location.Y + 48);
-                    }
+                    MoveToPosition(pictureBox);
 
                     Moved = true;
                 }
@@ -300,6 +286,69 @@ namespace Ludo
             }
             if (Moved)
                 AfterMove();
+        }
+
+        private void MoveToPosition(PictureBox pictureBox)
+        {
+            int x = pictureBox.Location.X;
+            int y = pictureBox.Location.Y;
+            var point = Direction["Right"];
+            if(x>=385 &&  x<= 385 &&  y>=455 &&  y<=465)
+            {
+                point = Direction["UpLeft"];
+            }
+            else if(x>=325 && x<=335 && y>= 310 && y<=316)
+            {
+                point = Direction["UpRight"];
+            }
+            else if(x >= 505 && x <= 515 && y >= 255 && y <= 265)
+            {
+                point = Direction["DownRight"];
+            }
+            else if(x >= 565 && x <= 575 && y >= 405 && y <= 415)
+            {
+                point = Direction["DownLeft"];
+            }
+            else if(right(x, y))
+            {
+                point = Direction["Right"];
+            }
+            else if(left(x,y))
+            {
+                point = Direction["Left"];
+            }
+            else if(Up(x,y))
+            {
+                
+                point = Direction["Up"];
+            }
+            else if(Down(x,y))
+            {
+                
+                point = Direction["Down"];
+            }
+            pictureBox.Location = new Point(x-point.X, y-point.Y);
+        }
+
+        private bool Down(int x, int y)
+        {
+            return (((x >= 505 && x <= 515 && y>=20 && y<=255)||(x >= 505 && x <= 515 && y>=450 && y<=690)|| (x >= 865 && x <= 880 && y >= 310 && y <= 400)));
+        }
+
+        private bool Up(int x, int y)
+        {
+            return (((x >= 385 && x <= 395 && y >= 460 && y <= 700) || (x >= 385 && x <= 395 && y >= 30 && y <= 270) || (x >= 25 && x <= 35 && y >= 310 && y <= 400)));
+        }
+
+        private bool left(int x, int y)
+        {
+            return (((x >= 30 && x <= 300 && y >= 405 && y <= 415) || (x >= 565 && x <= 880 && y >= 405 && y <= 415) || (x >= 395 && x <= 520 && y >= 695 && y <= 705)));
+            
+        }
+
+        private bool right(int x, int y)
+        {
+            return (((x >= 505 && x <= 515 && y >= 310 && y <= 320) || (x >= 505 && x <= 515 && y >= 310 && y <= 320) || (x >= 865 && x <= 880 && y >= 20 && y <= 30)));
         }
 
         private void AfterMove()
